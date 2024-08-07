@@ -1,31 +1,25 @@
----
-output:
-  md_document:
-    variant: markdown_github
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-
 # Descripción:
 
+Es un curso introductorio teórico-práctico que proporciona los conceptos
+básicos del análisis de series cronológicas.
 
-Es un curso introductorio teórico-práctico que proporciona los conceptos básicos del análisis de series cronológicas.
+Profesor: Shu Wei Chou Chen (<shuwei.chou@ucr.ac.cr>)
 
-Profesor: Shu Wei Chou Chen (shuwei.chou@ucr.ac.cr)
+-   [Programa del curso
+    (estadística)](https://shuwei325.github.io/SP1633-II24/SP1633%20Series%20Cronológicas.pdf)
+    <br>
+-   [Programa del curso
+    (matemática)](https://shuwei325.github.io/SP1633-II24/PF1328%20Series%20de%20Tiempo%20I.pdf)
 
-- [Programa del curso (estadística)](https://shuwei325.github.io/SP1633-II24/SP1633 Series Cronológicas.pdf) <br>
-- [Programa del curso (matemática)](https://shuwei325.github.io/SP1633-II24/PF1328 Series de Tiempo I.pdf)
-
-[Instrucciones para el trabajo final](https://shuwei325.github.io/SP1633-II24/instrucciones_trabajo.html)
+[Instrucciones para el trabajo
+final](https://shuwei325.github.io/SP1633-II24/instrucciones_trabajo.html)
 
 # Cronograma:
 
-Semana        |Fecha  | Clase | Laboratorio y Materiales extras
-------------- | ----- | ----- | ------------------------------------------------------------
-1             | 21/08 |[Tema 0](./Tema_0/presentacion.html) <br> [Tema 1](./Tema_1/presentacion.html) | [Lab Tema 1](./Tema_1/lab.html)
+| Semana | Fecha | Clase                                                                          | Laboratorio y Materiales extras |
+|------------|------|------|--------------------------------------------------|
+| 1      | 21/08 | [Tema 0](./Tema_0/presentacion.html) <br> [Tema 1](./Tema_1/presentacion.html) | [Lab Tema 1](./Tema_1/lab.html) |
+
 <!-- 2             | 28/08 | [Tema 2](https://shuwei325.github.io/SP1633-II23/Tema_2/presentacion.html)     | [Lab Tema 2](https://shuwei325.github.io/SP1633-II23/Tema_2/lab_Tema02.html) <br> [archivos](./Tema_2/Tema_2.zip) -->
 <!-- 3             | 4/09 |  [Tema 3](https://shuwei325.github.io/SP1633-II23/Tema_3/presentacion.html)     | [Lab Tema 3](https://shuwei325.github.io/SP1633-II23/Tema_3/lab_Tema03.html) <br> [archivos](./Tema_3/Tema_3.zip) -->
 <!-- 4             | 11/09 | [Tema 4](https://shuwei325.github.io/SP1633-II23/Tema_4/presentacion.html)  |   [Lab Tema 4](https://shuwei325.github.io/SP1633-II23/Tema_4/lab_Tema04.html) | -->
@@ -38,7 +32,6 @@ Semana        |Fecha  | Clase | Laboratorio y Materiales extras
 <!-- 11             | 30/10 | [Tema 7](https://shuwei325.github.io/SP1633-II23/Tema_7/presentacion.html)     | [Lab Tema 7](https://shuwei325.github.io/SP1633-II23/Tema_7/lab_Tema07.html) <br> [archivos](./Tema_7/Tema_7.zip) |     | -->
 <!-- 12             | 6/11 | [Tema 8a](https://shuwei325.github.io/SP1633-II23/Tema_8a/presentacion.html)     | [Lab Tema 8a](https://shuwei325.github.io/SP1633-II23/Tema_8a/lab_Tema08a.R) |     | -->
 <!-- 13             | 13/11 | [Tema 8b](https://shuwei325.github.io/SP1633-II23/Tema_8b/presentacion.html)     | [Lab Tema 8b](https://shuwei325.github.io/SP1633-II23/Tema_8b/lab_Tema08b.zip) |     | -->
-
 <!-- 14             | 13/11 |  |     | -->
 <!-- 15             | 20/11 |  |     | -->
 <!-- 16             | 27/11 |  |     | -->
@@ -55,4 +48,3 @@ Semana        |Fecha  | Clase | Laboratorio y Materiales extras
 <!-- [Lista 6](Lista_6.pdf)    | [datos](Lista_6_archivos.zip)      | -->
 <!-- [Lista 7](Lista_7.pdf)    | [datos](Lista_7_archivos.zip)      | -->
 <!-- [Lista 8](Lista_8.pdf)    | [datos](Lista_8_archivos.zip)      | -->
-
