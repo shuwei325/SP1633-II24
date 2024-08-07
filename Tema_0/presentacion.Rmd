@@ -1,0 +1,88 @@
+---
+title: "Información general del curso"
+subtitle: "Series de tiempo (PF-1328) <br> Series cronológicas (SP-1633)"
+author: "Prof. Shu Wei Chou Chen"
+institute: "Posgrado en Estadística - Posgrado en Matemática (UCR)"
+date: ""
+output:
+  xaringan::moon_reader:
+    css: [default,  metropolis, metropolis-fonts, ninjutsu,"text_color.css"]
+  html_document: default
+  pdf_document: default
+fontsize: 12pt
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE,fig.dim=c(4.8, 4.5), fig.retina=2, out.width="100%")
+```
+
+
+```{r, include=FALSE}
+library(ggplot2)
+library(forecast)
+library(fpp2)
+library(astsa)
+```
+
+
+# Tema 0
+
+## Actividad - inicio del curso.
+
+
+---
+# Acerca de mí
+
+- Docente en la Escuela de Estadística.
+- Investigador en el Centro de Investigación en Matemática Pura y Aplicada (CIMPA).
+- Bachillerato y Maestría Académica en Estadística, UCR.
+- Doctorado en Estadística en el Instituto de Matemática y Estadística, Universidad de São Paulo.
+
+**Cursos actuales:**
+- Análisis de Series Temporales (4ero año - Bachillerato)
+- Series Cronológicas (1er año - Maestría)
+
+**Temas de interés:**
+1. Métodos estadísticos y sus aplicaciones
+2. Series temporales
+3. Análisis espacio-temporal
+
+---
+# Acerca de ustedes
+
+- En grupos de 4 personas, conozcan entre ustedes:
+1. Nombre y lugar de trabajo...
+2. ¿De qué área se graduó? ¿Cuál maestría está matriculada?
+3. ¿Cómo ha logrado lidiar con la mezcla de la modalidad virtual y presencial del trabajo y estudios? 
+4. ¿Qué expectativas tienen sobre la modalidad de los cursos de este semestre?
+5. ¿Qué experiencia tienen sobre el análisis de series temporales?
+6. ¿Cuáles son las expectativas de este curso?
+
+- En 10 minutos, presente a la clase uno de sus compañero(a)s.
+
+---
+# Dinámica del curso
+
+**Plataformas del curso:**
+
+1. [Mediación virtual](https://mv1.mediacionvirtual.ucr.ac.cr/course/view.php?id=32776)
+
+2. [Slack](https://join.slack.com/t/seriesii-2024/shared_invite/zt-2o9eg7re9-GVWzSk3PYDTkmjYsDhpMNA)
+
+
+
+**Llene el cuestionario:**
+
+[https://forms.gle/5nnbDzviNixQU5eU8](https://forms.gle/5nnbDzviNixQU5eU8)
+
+
+---
+# Discusión del programa
+
+
+- [Series Cronológicas](https://shuwei325.github.io/SP1633-II23/SP1633 Series Cronológicas.pdf)
+
+- [Series de Tiempo](https://shuwei325.github.io/SP1633-II23/PF1328 Series de Tiempo I.pdf)
+
+- [Confirme la discusión del programa]()
+
