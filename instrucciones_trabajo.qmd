@@ -1,0 +1,21 @@
+---
+title: "Instrucciones para el trabajo final"
+format: html
+editor: visual
+---
+
+El objetivo de este trabajo es poner en práctica los métodos de series cronológicas vistos en clase a los datos reales de acuerdo al interés del estudiantado. Con la serie temporal seleccionada al principio del curso, los estudiantes deben aplicar uno o varios métodos aprendidos en este curso. Los estudiantes del Posgrado de Matemática, deben investigar e incorporar una metodología adicional. Final del curso, deben presentar un trabajo escrito en forma de artículo corto (en menos de 10 páginas) y expondrán este proyecto al final de semestre. El tiempo máximo de la presentación es de 10 minutos.
+
+El artículo debe venir las siguientes secciones:
+
+1.  Resumen/abstract: primero en inglés y luego en español. Máximo 250 palabras cada resumen.
+
+2.  Introducción: incluir una descripción del contexto del problema y el objetivo del análisis.
+
+3.  Metodología: describir la serie, explicar las metodologías utilizadas y su justificación.
+
+4.  Resultados y discusión: presentar los análisis realizados, diagnósticos y comparaciones de modelos.
+
+5.  Conclusiones: Resumir los hallazgos del estudio e incluir limitaciones y trabajos a futuro.
+
+6.  Referencias
