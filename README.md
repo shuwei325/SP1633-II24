@@ -3,7 +3,7 @@
 Es un curso introductorio teórico-práctico que proporciona los conceptos
 básicos del análisis de series cronológicas.
 
-Profesor: Shu Wei Chou Chen (<shuwei.chou@ucr.ac.cr>)
+**Profesor:** Shu Wei Chou Chen (<shuwei.chou@ucr.ac.cr>)
 
 -   [Programa del curso
     (estadística)](https://shuwei325.github.io/SP1633-II24/SP1633%20Series%20Cronológicas.pdf)
@@ -16,9 +16,9 @@ final](https://shuwei325.github.io/SP1633-II24/instrucciones_trabajo.html)
 
 # Cronograma:
 
-| Semana | Fecha | Clase                                                                          | Laboratorio y Materiales extras |
-|------------|------|------|--------------------------------------------------|
-| 1      | 12/08 | [Tema 0](./Tema_0/presentacion.html) <br> [Tema 1](./Tema_1/presentacion.html) | [Lab Tema 1](./Tema_1/lab.html) |
+| Tema | Clase                                                                          | Laboratorio y Materiales extras |
+|-------------|------|------------------------------------------------------|
+| 1    | [Tema 0](./Tema_0/presentacion.html) <br> [Tema 1](./Tema_1/presentacion.html) | [Lab Tema 1](./Tema_1/lab.html) |
 
 <!-- 2             | 28/08 | [Tema 2](https://shuwei325.github.io/SP1633-II23/Tema_2/presentacion.html)     | [Lab Tema 2](https://shuwei325.github.io/SP1633-II23/Tema_2/lab_Tema02.html) <br> [archivos](./Tema_2/Tema_2.zip) -->
 <!-- 3             | 4/09 |  [Tema 3](https://shuwei325.github.io/SP1633-II23/Tema_3/presentacion.html)     | [Lab Tema 3](https://shuwei325.github.io/SP1633-II23/Tema_3/lab_Tema03.html) <br> [archivos](./Tema_3/Tema_3.zip) -->
