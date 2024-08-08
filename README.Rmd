@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-# Descripción:
+# Descripción
 
 Es un curso introductorio teórico-práctico que proporciona los conceptos básicos del análisis de series cronológicas.
 
@@ -20,7 +20,7 @@ Es un curso introductorio teórico-práctico que proporciona los conceptos bási
 
 [Instrucciones para el trabajo final](https://shuwei325.github.io/SP1633-II24/instrucciones_trabajo.html)
 
-# Cronograma:
+# Presentaciones y materiales
 
 Tema          | Clase | Laboratorio y Materiales extras
 ------------- | ----- | ------------------------------------------------------------
@@ -42,7 +42,7 @@ Tema          | Clase | Laboratorio y Materiales extras
 <!-- 15             | 20/11 |  |     | -->
 <!-- 16             | 27/11 |  |     | -->
 
-# Ejercicios:
+# Ejercicios
 
 <!-- Lista               |Archivos adicionales                      |  -->
 <!-- ------------------- | ---------------------------------------- | -->
