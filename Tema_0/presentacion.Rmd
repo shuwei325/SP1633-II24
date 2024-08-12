@@ -52,11 +52,13 @@ library(astsa)
 
 - En grupos de 4 personas, conozcan entre ustedes:
 1. Nombre y lugar de trabajo...
-2. ¿De qué área se graduó? ¿Cuál maestría está matriculada?
-3. ¿Cómo ha logrado lidiar con la mezcla de la modalidad virtual y presencial del trabajo y estudios? 
-4. ¿Qué expectativas tienen sobre la modalidad de los cursos de este semestre?
-5. ¿Qué experiencia tienen sobre el análisis de series temporales?
-6. ¿Cuáles son las expectativas de este curso?
+2. ¿De qué área se graduó? 
+3. ¿Cuál maestría está matriculada? ¿Cuántos cursos? ¿lleva en qué nivel está?
+4. ¿Cómo ha logrado lidiar con la mezcla de la modalidad virtual y presencial del trabajo y estudios? 
+5. ¿Qué expectativas tienen sobre la modalidad de los cursos de este semestre?
+6. ¿Qué experiencia tienen sobre el análisis de series temporales?
+7. ¿Cuáles son las expectativas de este curso?
+8. Cualquier otra pregunta que se les ocurre...
 
 - En 10 minutos, presente a la clase uno de sus compañero(a)s.
 
@@ -84,5 +86,5 @@ library(astsa)
 
 - [Series de Tiempo](https://shuwei325.github.io/SP1633-II24/PF1328 Series de Tiempo I.pdf)
 
-- [Confirme la discusión del programa]()
+- [Confirme la discusión del programa](https://forms.gle/q4iefQsNzCMrneey8)
 
