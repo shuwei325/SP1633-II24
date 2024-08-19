@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Tema 8a: Modelos no lineales: ARCH, GARCH y extensiones</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Shu Wei Chou Chen" />
+    <script src="presentacion_files/header-attrs/header-attrs.js"></script>
+    <link href="presentacion_files/remark-css/default.css" rel="stylesheet" />
+    <link href="presentacion_files/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="presentacion_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="presentacion_files/remark-css/ninjutsu.css" rel="stylesheet" />
+    <link rel="stylesheet" href="text_color.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Tema 8a: Modelos no lineales: ARCH, GARCH y extensiones
+]
+.subtitle[
+## Curso: Series Cronológicas
+]
+.author[
+### Prof. Shu Wei Chou Chen
+]
+.institute[
+### Posgrado en Estadística - Posgrado en Matemática (UCR)
+]
+
+---
+
+
+
+
+
+
+
+# Contenido
+
+1. Introducción
+2. Modelos no lineales
+3. Los modelos ARCH y GARCH
+  - Retornos
+  - ARCH
+  - GARCH
+
+---
+# Introducción 
+
+- En la práctica, se observan fenómenos con variancia condicional que evoluciona con el tiempo y los modelos ARIMA no son adecuados para estos fenómenos.
+
+- La aplicación más utilizada y conocida es en las series financieras.
+
+- Existe una variedad de modelos no lineales en la literatura.
+
+- Vamos a enfocarnos en la clase de modelos ARCH y GARCH.
+  - **ARCH** (*AutoRegressive Conditional Heteroscedastic*): Modelos autoregresivos con heteroscedasticidad condicional.
+  
+  - **GARCH** (*Generalized AutoRegressive Conditional Heteroscedastic*): Modelos autoregresivos con heteroscedasticidad condicional generalizada.
+
+
+---
+# Algunos modelos no lineales
+
+- De manera general, el análisis de modelos no lineales suponen que los errores o innovaciones `\(a_t\)` son i.i.d. y el modelo tiene la siguiente forma:
+
+
+`$$X_t= g(a_{t-1},a_{t-2},...)+a_{t}h(a_{t-1},a_{t-2},...),$$` en donde &lt;br /&gt;
+`\(g(\cdot)\)` es la media condicional, y  &lt;br /&gt;
+`\(h^2(\cdot)\)` es la variancia condicional.
+
+**Nota:**
+- Los modelos ARMA (bajo el supuesto de estacionariedad) pueden ser representados por:
+`$$X_t= \sum\limits_{i=0}^\infty \xi_i  a_{t-i}$$` que es un modelo lineal.
+
+
+---
+# Algunos modelos no lineales
+
+- El modelos no lineales:
+
+`$$X_t= g(a_{t-1},a_{t-2},...)+a_{t}h(a_{t-1},a_{t-2},...),$$`
+en donde `\(g(\cdot)\)` es la media condicional, y `\(h^2(\cdot)\)` es la variancia condicional.
+
+  - Se dice que el modelo es 
+    - no lineal en media si `\(g(\cdot)\)` es no lineal.
+    - no lineal en variancia si `\(h^2(\cdot)\)` es no lineal.
+
+
+**Ejemplo 1**:
+
+El modelo: `$$X_t=a_t+\alpha a_{t-1}^2$$`
+es no lineal en media porque `\(g(\cdot)=\alpha a_{t-1}^2\)` y `\(h(\cdot)=1\)`
+
+
+---
+# Algunos modelos no lineales
+
+
+**Ejemplo 2**: El modelo **ARCH(1)**
+
+`$$X_t= a_t \sqrt{\alpha X_{t-1}^2}$$`
+es no lineal en variancia porque `\(g(\cdot)=0\)` y `\(h(\cdot)=\sqrt{\alpha X_{t-1}^2}\)` y `\(X_{t-1}\)` depende de `\(a_{t-1}\)`.
+
+
+**Ejemplo 3**: Modelos polinomiales
+
+Este modelo tiene la función `\(g(\cdot)\)` como
+
+`$$g(a_{t-1},a_{t-2},...)=\sum\limits_{i=1}^\infty c_i  a_{t-i}+\sum\limits_{i=1}^\infty \sum\limits_{j=1}^\infty b_{ij} a_{t-i} a_{t-j}+...,$$`
+Es una expansión de Volterra, involucrando términos lineales, bilineales,... de las innovaciones. 
+
+
+---
+# Algunos modelos no lineales
+
+
+**Ejemplo 4**: El modelo bilineal:
+
+Este modelo tiene la función `\(g(\cdot)\)` como
+
+`$$g(a_{t-1},a_{t-2},...)=\sum\limits_{i=1}^\infty \alpha_i  a_{t-i}+\sum\limits_{i=1}^\infty \beta_i  X_{t-i}+\sum\limits_{i=1}^\infty \sum\limits_{j=1}^\infty \gamma_{ij} X_{t-i} a_{t-j}.$$`
+
+---
+# Los modelos ARCH
+
+- Los modelos **ARCH** (*AutoRegressive Conditional Heteroscedastic*), o modelos autorregresivos con heteroscedasticidad condicional, fueron propuestos por Engle (1982).
+
+- Robert F. Engle recibió Premio Nobel de Economía por los análisis de ARCH para datos de series temporales económicos.
+
+- La idea básica del modelo es un proceso estacionario que tienen la variancia marginal constante, pero la variancia condicionada a sus valores pasados no lo es.
+
+- Estos procesos fueron propuestos para explicar ciertas propiedades que no pueden ser explicados por los modelos ARIMA y que son muy frecuentes en datos financieros y ambiantales de alta frecuencia (datos diarios, horarios, etc.).
+
+---
+# Retornos
+
+- Suponga que `\(X_t\)` es el valor de un activo en el tiempo `\(t\)`, el retorno `\(r_t\)` en el tiempo `\(t\)` es:
+
+`$$r_t=\frac{X_t-X_{t-1}}{X_{t-1}}$$`
+- Despejando la expresión anterior:
+`$$X_t=(1+r_t)X_{t-1}$$`
+`$$\Rightarrow \ln X_t=\ln (1+r_t)+ \ln X_{t-1}$$`
+`$$\Rightarrow \nabla \ln X_t = \ln X_t - \ln X_{t-1}=\ln (1+r_t) \approx r_t,$$`
+si `\(r_t\)` son cambios porcentuales pequeños.
+
+
+---
+# Retornos
+
+**Nota:** Recuerde que para una función `\(f(x)\)`, el polinomio de Taylor es una aproximación polinómica de una función n veces derivable en un punto `\(a\)`. Concretamente:
+
+`$$f(x) \approx f(a) + f'(a) (x-a) + \frac{f''(a)}{2!}(x-a)^2 + ...+ \frac{f^{(n)}(a)}{n!}(x-a)^n$$`
+
+- De esta forma, `$$\nabla \ln X_t = \ln X_t - \ln X_{t-1}=\ln (1+r_t) \approx r_t,$$`
+
+- A partir de aquí, llamamos `\(r_t\)` o `\(\nabla \ln X_t\)` retornos.
+
+---
+# Retornos
+
+- En finanzas, la variancia condicional del retorno financiero de una cartera es una medida de riesgo de una cartera (Value at Risk - VAR).
+
+- En un mercado eficiente, el retorno esperado debería ser cero, y así debería comportarse como un proceso de ruido blanco.
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-2-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-3-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-4-1.png" width="90%" /&gt;
+]
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-5-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+
+```r
+mod1 = Arima(r, order=c(1,0,1))
+summary(mod1)
+```
+
+```
+## Series: r 
+## ARIMA(1,0,1) with non-zero mean 
+## 
+## Coefficients:
+##          ar1      ma1   mean
+##       0.2819  -0.3925  2e-04
+## s.e.  0.1595   0.1532  2e-04
+## 
+## sigma^2 = 0.0001446:  log likelihood = 7556.85
+## AIC=-15105.69   AICc=-15105.68   BIC=-15082.37
+## 
+## Training set error measures:
+##                        ME       RMSE         MAE  MPE MAPE      MASE        ACF1
+## Training set 1.888577e-07 0.01201903 0.007879226 -Inf  Inf 0.6620624 0.002990262
+```
+
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-7-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+```
+## 
+## 	Ljung-Box test
+## 
+## data:  Residuals from ARIMA(1,0,1) with non-zero mean
+## Q* = 23.844, df = 8, p-value = 0.002434
+## 
+## Model df: 2.   Total lags used: 10
+```
+
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-8-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-9-1.png" width="90%" /&gt;
+]
+
+
+---
+# Los modelos ARCH
+
+- Modelo **ARCH(1)**:
+
+`$$X_t=\sqrt{h_t} \epsilon_t$$`
+`$$h_t= \alpha_0 +\alpha_1 X_{t-1}^2$$`
+en donde `\(\epsilon_t\)` es ruido blanco gaussiano estándar, i.e. `\(\epsilon_t \overset{iid}{\sim} N(0,1)\)`, y `\(\alpha_0&gt;0,\alpha_1 \geq 0\)`.
+
+
+- La distribución condicional de `\(X_t\)` dado `\(X_{t-1}\)` es
+`$$X_t|X_{t-1} \sim N(0,\alpha_0 +\alpha_1 X_{t-1}^2)$$`
+
+---
+# Los modelos ARCH
+
+Recordatorio: las propiedades de la esperanza y variancia condicional.
+
+`$$E[Y]=E[E(Y|X)]~~y~~Var[Y]=E[Var(Y|X)]+Var[E(Y|X)]$$`
+
+
+
+Defina `\(\mathcal{F}_s= \left\lbrace X_{s},X_{s-1},... \right\rbrace\)` como la información disponible hasta el período `\(s\)`. Podemos calcular la media, variancia y autocorrelación incondicional de la serie:
+
+**Propiedades:**
+
+- `\(E(X_t)=E \left\lbrace E \left[ X_t| \mathcal{F}_{t-1} \right] \right\rbrace=0\)`
+- `\(Var(X_t)= E(X_t^2)=E \left\lbrace E \left[ X_t^2| \mathcal{F}_{t-1} \right] \right\rbrace=E(\alpha_0+\alpha_1 X_{t-1}^2)\)`
+`\(=\alpha_0+\alpha_1 E(X_{t-1}^2)\)`
+
+Si el proceso es estacionario, entonces para todo `\(t\)`, `\(E(X_{t}^2)=E(X_{t-1}^2)=Var(X_t)\)`
+`$$\Rightarrow Var(X_t)=\frac{\alpha_0}{1-\alpha_1}$$`
+con `\(0 \leq \alpha_1&lt;1\)`.
+
+---
+# Los modelos ARCH
+
+- `\(Cov(X_{t+k},X_t)=E(X_{t+k} X_t), k \geq 1,\)`
+
+`\(=E\left\lbrace E \left[ X_{t+k}X_t| \mathcal{F}_{t+k-1} \right] \right\rbrace=E\left\lbrace X_t~ E \left[ X_{t+k}| \mathcal{F}_{t+k-1} \right] \right\rbrace\)`
+
+`\(= E\left\lbrace X_t~ E \left[ \sqrt{h_{t+k}}\epsilon_{t+k}| \mathcal{F}_{t+k-1} \right] \right\rbrace=0\)`
+
+Por lo tanto, `\(\gamma_X(k)=0, k \geq 1\)`. En otras palabras, `\(X_t\)` es una secuencia de variables aleatorias no correlacionadas (ruido blanco) con variancia `\(\frac{\alpha_0}{1-\alpha_1}\)`.
+
+- Se puede demostrar que la kurtosis es
+`$$K=3\frac{1-\alpha_1^2}{1-3 \alpha_1^2}&gt;3.$$`
+El modelo ARCH(1) es leptocúrtico ya que las colas son más pesadas que una distribución normal.
+
+
+---
+# Los modelos ARCH
+
+Simulación de ARCH(1) con `\(\alpha_0=0.01\)`, `\(\alpha_1=0.8\)`
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-10-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-11-1.png" width="90%" /&gt;
+]
+
+---
+# Los modelos ARCH
+
+Si elevamos al cuadrado la serie simulada `\(X_t\)`.
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-12-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-13-1.png" width="90%" /&gt;
+]
+
+
+---
+# Los modelos ARCH
+
+- Modelo **ARCH(r)**:
+
+`$$X_t=\sqrt{h_t} \epsilon_t$$`
+`$$h_t= \alpha_0 +\alpha_1 X_{t-1}^2+\alpha_2 X_{t-2}^2+...+\alpha_r X_{t-r}^2$$`
+en donde `\(\epsilon_t\)` es ruido blanco gaussiano estándar, i.e. `\(\epsilon_t \sim i.i.d. N(0,1)\)`, y `\(\alpha_0 &gt;0\)` y `\(\alpha_i \geq 0,i=1,...,r\)`.
+
+
+
+---
+# Los modelos ARCH
+
+Simulación de ARCH(2) con `\(\alpha_0=0.01\)`, `\(\alpha_1=0.2\)`,  `\(\alpha_2=0.4\)`
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-14-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-15-1.png" width="90%" /&gt;
+]
+
+---
+# Los modelos ARCH
+
+Si elevamos al cuadrado la serie simulada `\(X_t\)`.
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-16-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-17-1.png" width="90%" /&gt;
+]
+
+
+---
+# Los modelos GARCH
+
+El Modelo **GARCH(1,1)** es definido por:
+
+`$$X_t=\sqrt{h_t} \epsilon_t$$`
+`$$h_t= \alpha_0 + \alpha_1 X_{t-1}^2 + \beta_1 h_{t-1}$$`
+
+con `\(\epsilon_t \sim i.i.d. N(0,1)\)`, `\(\alpha_0 &gt;0\)`, `\(\alpha_1 \geq 0\)`, `\(\beta_1 \geq 0\)` y `\(\alpha_1+\beta_1 &lt; 1\)`.
+
+
+---
+# Los modelos GARCH
+
+Simulación de GARCH(1,1) con `\(\alpha_0=0.01\)`, `\(\alpha_1=0.2\)`,  `\(\beta_2=0.4\)`
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-18-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-19-1.png" width="90%" /&gt;
+]
+
+---
+# Los modelos GARCH
+
+Si elevamos al cuadrado la serie simulada `\(X_t\)`.
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-20-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-21-1.png" width="90%" /&gt;
+]
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-22-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-23-1.png" width="90%" /&gt;
+]
+
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+
+```r
+mod1 = Arima(djia.retorno, order=c(1,0,1))
+summary(mod1)
+```
+
+```
+## Series: djia.retorno 
+## ARIMA(1,0,1) with non-zero mean 
+## 
+## Coefficients:
+##          ar1      ma1   mean
+##       0.2907  -0.4011  2e-04
+## s.e.  0.1596   0.1530  2e-04
+## 
+## sigma^2 = 0.0001446:  log likelihood = 7556.85
+## AIC=-15105.7   AICc=-15105.68   BIC=-15082.37
+## 
+## Training set error measures:
+##                       ME       RMSE         MAE  MPE MAPE      MASE        ACF1
+## Training set 4.28313e-07 0.01201902 0.007879946 -Inf  Inf 0.6621228 0.002800533
+```
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-25-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-26-1.png" width="90%" /&gt;
+]
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-27-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-28-1.png" width="90%" /&gt;
+]
+
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+modelo GARCH
+
+
+```r
+djia.g &lt;- garchFit(~garch(1,1), data=djia.retorno)
+```
+
+
+```r
+djia.g@fit$matcoef
+```
+
+```
+##            Estimate   Std. Error   t value     Pr(&gt;|t|)
+## mu     6.529185e-04 1.556582e-04  4.194565 2.733961e-05
+## omega  2.203263e-06 4.021494e-07  5.478718 4.284194e-08
+## alpha1 1.209236e-01 1.323726e-02  9.135090 0.000000e+00
+## beta1  8.615078e-01 1.326084e-02 64.966292 0.000000e+00
+```
+
+
+El Modelo GARCH(1,1):
+
+`$$r_t= 0.000653 + \sqrt{h_t} \epsilon_t$$`
+`$$h_t= 0.0000022 + 0.121 \varepsilon_{t-1}^2 + 0.86 h_{t-1}$$`
+    
+
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-31-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-32-1.png" width="90%" /&gt;
+]
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-33-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-34-1.png" width="100%" /&gt;
+]
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-35-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-36-1.png" width="100%" /&gt;
+]
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-37-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-38-1.png" width="100%" /&gt;
+]
+
+
+
+---
+# Ejemplo Promedio diario industrial D.J.
+
+Modelo ARMA-GARCH
+
+
+```r
+djia.g &lt;- garchFit(~arma(1,1)+garch(1,1), data=djia.retorno)
+```
+
+
+```r
+djia.g@fit$matcoef
+```
+
+```
+##             Estimate   Std. Error   t value     Pr(&gt;|t|)
+## mu      2.342926e-04 1.718323e-04  1.363496 1.727262e-01
+## ar1     6.501490e-01 2.505108e-01  2.595294 9.451015e-03
+## ma1    -6.948000e-01 2.369594e-01 -2.932148 3.366259e-03
+## omega   2.210515e-06 4.029936e-07  5.485235 4.129199e-08
+## alpha1  1.208763e-01 1.332254e-02  9.073067 0.000000e+00
+## beta1   8.614443e-01 1.334439e-02 64.554782 0.000000e+00
+```
+
+El Modelo ARMA(1,1)+GARCH(1,1):
+
+
+`$$r_t= 0.00023 + 0.65 r_{t-1} + \varepsilon_t - 0.695 \varepsilon_{t-1}$$`
+`$$\varepsilon_t=\sqrt{h_t} \epsilon_t$$`
+`$$h_t= 0.0000022 + 0.121 \varepsilon_{t-1}^2 + 0.86 h_{t-1}$$`
+    
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-41-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-42-1.png" width="90%" /&gt;
+]
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-43-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-44-1.png" width="100%" /&gt;
+]
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-45-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-46-1.png" width="100%" /&gt;
+]
+
+---
+# Ejemplo
+## Promedio diario industrial Dow Jone
+
+.pull-left[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-47-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="presentacion_files/figure-html/unnamed-chunk-48-1.png" width="100%" /&gt;
+]
+
+
+
+---
+# Los modelos GARCH
+
+El Modelo **GARCH(r,s)** es definido por:
+
+`$$X_t=\sqrt{h_t} \epsilon_t$$`
+`$$h_t= \alpha_0 + \sum_{i=1}^r \alpha_i X_{t-i}^2 + \sum_{j=1}^s \beta_j h_{t-j}$$`
+`$$= \alpha_0 +\alpha_1 X_{t-1}^2+\alpha_2 X_{t-2}^2+...+\alpha_r X_{t-r}^2$$`
+`$$+\beta_1 h_{t-1}+...+\beta_s h_{t-s}$$`
+en donde `\(\epsilon_t \sim i.i.d. N(0,1)\)`, `\(\alpha_0 &gt;0\)`, `\(\alpha_i \geq 0\)`, `\(\beta_j \geq 0\)` y `\(\sum\limits_{i=1}^q (\alpha_i+\beta_i) &lt; 1, q=max(r,s)\)`.
+
+
+---
+# Extensiones del modelo GARCH
+
+- Exponential GAGRCH (EGARCH).
+- Threshold GARCH (TGARCH).
+- Integrated GARCH (IGARCH).
+- ...
+
+---
+# Próximos temas
+
+### Tema 8b: Modelos lineales multivariados de series temporales
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create();
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
