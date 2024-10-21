@@ -112,7 +112,7 @@ Observe la diferencia con el modelo $SARMA(12,0,1)(0,0,0)_12$
 ```{r}
 try(
 x3a <- arima.sim(n = TT, model = list(order = c(12,0,0), 
-                                      ar = c(0.7,rep(0,10),0.9)),sd=1,rand.gen= rnorm) + m
+                                      ar = c(0.7,rep(0,10),0.9)),sd=1,rand.gen= rnorm)
 )
 coef<-c(1,-0.7,rep(0,10),-0.9)
 modulo.raices<-Mod(polyroot(coef))
