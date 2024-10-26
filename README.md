@@ -28,8 +28,8 @@ final](https://shuwei325.github.io/SP1633-II24/instrucciones_trabajo.html)
 |  | [Tema 6_3](./Tema_6/presentacion3.html) | [Lab Tema 6_1](./Tema_6/lab_Tema06_1.html) |
 |  | [Tema 6_4](./Tema_6/presentacion4.html) | [Lab Tema 6_2](./Tema_6/lab_Tema06_2.html) |
 | 7\. Regresión dinámica | [Tema 7](./Tema_7/presentacion.html) | [Lab Tema 7](./Tema_7/lab_Tema07.html) <br> [archivos](./Tema_7/Tema_7.zip) |
-| 8a. ARCH/GARCH | [Tema 8a](./Tema_8a/presentacion.html) | [Lab Tema 8a](./Tema_8a/lab_Tema08a.zip) |
-| 8b. Multivariado | [Tema 8b](./Tema_8b/presentacion.html) | [Lab Tema 8b](./Tema_8b/lab_Tema08b.zip) <br> [archivos](./Tema_7/archivos.zip) |
+| 8a. ARCH/GARCH | [Tema 8a](./Tema_8a/presentacion.html) | [Lab Tema 8a](./Tema_8a/lab_Tema08a.html) |
+| 8b. Multivariado | [Tema 8b](./Tema_8b/presentacion.html) | [Lab Tema 8b](./Tema_8b/lab_Tema08b.html) <br> [archivos](./Tema_8/archivos.zip) |
 
 # Ejercicios
 
